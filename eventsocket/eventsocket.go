@@ -347,7 +347,9 @@ func (h *Connection) Send(command string) (*Event, error) {
 	//if strings.IndexAny(command, "\r\n") > 0 {
 	//	return nil, errInvalidCommand
 	//}
-	fmt.Fprintf(h.conn, "%s\r\n\r\n", command)
+	if h.conn != nil {
+		_, _ = fmt.Fprintf(h.conn, "%s\r\n\r\n", command)
+	}
 	var (
 		ev  *Event
 		err error
