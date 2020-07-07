@@ -269,7 +269,7 @@ func (h *Connection) RemoteAddr() net.Addr {
 
 // Close terminates the connection.
 func (h *Connection) Close() {
-	close(h.err)
+	h.err <- errors.New("closing")
 	h.conn.Close()
 }
 
